@@ -45,4 +45,20 @@ defmodule Shoja.AccountsFixtures do
 
     user_detail
   end
+
+  @doc """
+  Generate a user_profile.
+  """
+  def user_profile_fixture(attrs \\ %{}) do
+    {:ok, user_profile} =
+      attrs
+      |> Enum.into(%{
+        primary: true,
+        purpose: "some purpose",
+        username: "some username"
+      })
+      |> Shoja.Accounts.create_user_profile()
+
+    user_profile
+  end
 end

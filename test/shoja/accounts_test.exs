@@ -565,4 +565,62 @@ defmodule Shoja.AccountsTest do
       assert %Ecto.Changeset{} = Accounts.change_user_detail(user_detail)
     end
   end
+
+  describe "user_profiles" do
+    alias Shoja.Accounts.UserProfile
+
+    import Shoja.AccountsFixtures
+
+    @invalid_attrs %{primary: nil, username: nil, purpose: nil}
+
+    test "list_user_profiles/0 returns all user_profiles" do
+      user_profile = user_profile_fixture()
+      assert Accounts.list_user_profiles() == [user_profile]
+    end
+
+    test "get_user_profile!/1 returns the user_profile with given id" do
+      user_profile = user_profile_fixture()
+      assert Accounts.get_user_profile!(user_profile.id) == user_profile
+    end
+
+    test "create_user_profile/1 with valid data creates a user_profile" do
+      valid_attrs = %{primary: true, username: "some username", purpose: "some purpose"}
+
+      assert {:ok, %UserProfile{} = user_profile} = Accounts.create_user_profile(valid_attrs)
+      assert user_profile.primary == true
+      assert user_profile.username == "some username"
+      assert user_profile.purpose == "some purpose"
+    end
+
+    test "create_user_profile/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Accounts.create_user_profile(@invalid_attrs)
+    end
+
+    test "update_user_profile/2 with valid data updates the user_profile" do
+      user_profile = user_profile_fixture()
+      update_attrs = %{primary: false, username: "some updated username", purpose: "some updated purpose"}
+
+      assert {:ok, %UserProfile{} = user_profile} = Accounts.update_user_profile(user_profile, update_attrs)
+      assert user_profile.primary == false
+      assert user_profile.username == "some updated username"
+      assert user_profile.purpose == "some updated purpose"
+    end
+
+    test "update_user_profile/2 with invalid data returns error changeset" do
+      user_profile = user_profile_fixture()
+      assert {:error, %Ecto.Changeset{}} = Accounts.update_user_profile(user_profile, @invalid_attrs)
+      assert user_profile == Accounts.get_user_profile!(user_profile.id)
+    end
+
+    test "delete_user_profile/1 deletes the user_profile" do
+      user_profile = user_profile_fixture()
+      assert {:ok, %UserProfile{}} = Accounts.delete_user_profile(user_profile)
+      assert_raise Ecto.NoResultsError, fn -> Accounts.get_user_profile!(user_profile.id) end
+    end
+
+    test "change_user_profile/1 returns a user_profile changeset" do
+      user_profile = user_profile_fixture()
+      assert %Ecto.Changeset{} = Accounts.change_user_profile(user_profile)
+    end
+  end
 end

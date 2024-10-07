@@ -10,6 +10,7 @@ defmodule Shoja.Accounts.User do
     field :confirmed_at, :utc_datetime
 
     has_one :user_detail, Shoja.Accounts.UserDetail
+    has_many :user_profiles, Shoja.Accounts.UserProfile
 
     timestamps(type: :utc_datetime)
   end
