@@ -6,7 +6,12 @@ defmodule ShojaWeb.UserProfileLive.Index do
 
   @impl true
   def mount(_params, _session, socket) do
-    {:ok, stream(socket, :user_profiles, Accounts.list_user_profiles())}
+    {:ok,
+     stream(
+       socket,
+       :user_profiles,
+       Accounts.list_user_profiles_by_user_id(socket.assigns.current_user.id)
+     )}
   end
 
   @impl true

@@ -462,6 +462,10 @@ defmodule Shoja.Accounts do
     Repo.all(UserProfile)
   end
 
+  def list_user_profiles_by_user_id(user_id) do
+    Repo.all(from(u in UserProfile, where: u.user_id == ^user_id))
+  end
+
   @doc """
   Gets a single user_profile.
 
