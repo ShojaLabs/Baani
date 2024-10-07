@@ -66,6 +66,8 @@ defmodule ShojaWeb.UserProfileLive.FormComponent do
   end
 
   defp save_user_profile(socket, :new, user_profile_params) do
+    user_profile_params = Map.put(user_profile_params, "user_id", socket.assigns.user_id)
+
     case Accounts.create_user_profile(user_profile_params) do
       {:ok, user_profile} ->
         notify_parent({:saved, user_profile})

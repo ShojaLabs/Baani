@@ -31,13 +31,19 @@
   </:action>
 </.table>
 
-<.modal :if={@live_action in [:new, :edit]} id="user_profile-modal" show on_cancel={JS.patch(~p"/user_profiles")}>
+<.modal
+  :if={@live_action in [:new, :edit]}
+  id="user_profile-modal"
+  show
+  on_cancel={JS.patch(~p"/user_profiles")}
+>
   <.live_component
     module={ShojaWeb.UserProfileLive.FormComponent}
     id={@user_profile.id || :new}
     title={@page_title}
     action={@live_action}
     user_profile={@user_profile}
+    user_id={@current_user.id}
     patch={~p"/user_profiles"}
   />
 </.modal>

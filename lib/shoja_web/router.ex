@@ -68,6 +68,13 @@ defmodule ShojaWeb.Router do
       on_mount: [{ShojaWeb.UserAuth, :ensure_authenticated}] do
       live "/users/settings", UserSettingsLive, :edit
       live "/users/settings/confirm_email/:token", UserSettingsLive, :confirm_email
+
+      live "/user_profiles", UserProfileLive.Index, :index
+      live "/user_profiles/new", UserProfileLive.Index, :new
+      live "/user_profiles/:id/edit", UserProfileLive.Index, :edit
+
+      live "/user_profiles/:id", UserProfileLive.Show, :show
+      live "/user_profiles/:id/show/edit", UserProfileLive.Show, :edit
     end
   end
 
