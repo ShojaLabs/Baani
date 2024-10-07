@@ -50,7 +50,9 @@ defmodule ShojaWeb.UserProfileLive.FormComponent do
     save_user_profile(socket, socket.assigns.action, user_profile_params)
   end
 
-  defp save_user_profile(socket, :edit, user_profile_params) do
+  # allow editing only if the user owns the user_profile
+  defp save_user_profile(socket, :edit, user_profile_params)
+       when socket.assigns.user_profile.user_id == socket.assigns.user_id do
     case Accounts.update_user_profile(socket.assigns.user_profile, user_profile_params) do
       {:ok, user_profile} ->
         notify_parent({:saved, user_profile})
@@ -64,6 +66,11 @@ defmodule ShojaWeb.UserProfileLive.FormComponent do
         {:noreply, assign(socket, form: to_form(changeset))}
     end
   end
+
+  defp save_user_profile(socket, :edit, _user_profile_params),
+    do:
+      {:noreply,
+       socket |> put_flash(:error, "Invalid action") |> push_patch(to: socket.assigns.patch)}
 
   defp save_user_profile(socket, :new, user_profile_params) do
     user_profile_params = Map.put(user_profile_params, "user_id", socket.assigns.user_id)
