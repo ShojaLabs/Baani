@@ -505,4 +505,64 @@ defmodule Shoja.AccountsTest do
       refute inspect(%User{password: "123456"}) =~ "password: \"123456\""
     end
   end
+
+  describe "user_details" do
+    alias Shoja.Accounts.UserDetail
+
+    import Shoja.AccountsFixtures
+
+    @invalid_attrs %{first_name: nil, last_name: nil, bio: nil, date_of_birth: nil}
+
+    test "list_user_details/0 returns all user_details" do
+      user_detail = user_detail_fixture()
+      assert Accounts.list_user_details() == [user_detail]
+    end
+
+    test "get_user_detail!/1 returns the user_detail with given id" do
+      user_detail = user_detail_fixture()
+      assert Accounts.get_user_detail!(user_detail.id) == user_detail
+    end
+
+    test "create_user_detail/1 with valid data creates a user_detail" do
+      valid_attrs = %{first_name: "some first_name", last_name: "some last_name", bio: "some bio", date_of_birth: ~D[2024-10-06]}
+
+      assert {:ok, %UserDetail{} = user_detail} = Accounts.create_user_detail(valid_attrs)
+      assert user_detail.first_name == "some first_name"
+      assert user_detail.last_name == "some last_name"
+      assert user_detail.bio == "some bio"
+      assert user_detail.date_of_birth == ~D[2024-10-06]
+    end
+
+    test "create_user_detail/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Accounts.create_user_detail(@invalid_attrs)
+    end
+
+    test "update_user_detail/2 with valid data updates the user_detail" do
+      user_detail = user_detail_fixture()
+      update_attrs = %{first_name: "some updated first_name", last_name: "some updated last_name", bio: "some updated bio", date_of_birth: ~D[2024-10-07]}
+
+      assert {:ok, %UserDetail{} = user_detail} = Accounts.update_user_detail(user_detail, update_attrs)
+      assert user_detail.first_name == "some updated first_name"
+      assert user_detail.last_name == "some updated last_name"
+      assert user_detail.bio == "some updated bio"
+      assert user_detail.date_of_birth == ~D[2024-10-07]
+    end
+
+    test "update_user_detail/2 with invalid data returns error changeset" do
+      user_detail = user_detail_fixture()
+      assert {:error, %Ecto.Changeset{}} = Accounts.update_user_detail(user_detail, @invalid_attrs)
+      assert user_detail == Accounts.get_user_detail!(user_detail.id)
+    end
+
+    test "delete_user_detail/1 deletes the user_detail" do
+      user_detail = user_detail_fixture()
+      assert {:ok, %UserDetail{}} = Accounts.delete_user_detail(user_detail)
+      assert_raise Ecto.NoResultsError, fn -> Accounts.get_user_detail!(user_detail.id) end
+    end
+
+    test "change_user_detail/1 returns a user_detail changeset" do
+      user_detail = user_detail_fixture()
+      assert %Ecto.Changeset{} = Accounts.change_user_detail(user_detail)
+    end
+  end
 end

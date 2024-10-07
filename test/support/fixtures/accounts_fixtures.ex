@@ -28,4 +28,21 @@ defmodule Shoja.AccountsFixtures do
     [_, token | _] = String.split(captured_email.text_body, "[TOKEN]")
     token
   end
+
+  @doc """
+  Generate a user_detail.
+  """
+  def user_detail_fixture(attrs \\ %{}) do
+    {:ok, user_detail} =
+      attrs
+      |> Enum.into(%{
+        bio: "some bio",
+        date_of_birth: ~D[2024-10-06],
+        first_name: "some first_name",
+        last_name: "some last_name"
+      })
+      |> Shoja.Accounts.create_user_detail()
+
+    user_detail
+  end
 end
