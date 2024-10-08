@@ -6,7 +6,12 @@ defmodule ShojaWeb.OrganizationLive.Index do
 
   @impl true
   def mount(_params, _session, socket) do
-    {:ok, stream(socket, :organizations, Organizations.list_organizations())}
+    {:ok,
+     stream(
+       socket,
+       :organizations,
+       Organizations.list_organizations_by_creator_id(socket.assigns.current_user.id)
+     )}
   end
 
   @impl true

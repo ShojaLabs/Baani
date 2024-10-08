@@ -21,6 +21,10 @@ defmodule Shoja.Organizations do
     Repo.all(Organization)
   end
 
+  def list_organizations_by_creator_id(creator_id) do
+    Repo.all(from(o in Organization, where: o.creator_id == ^creator_id))
+  end
+
   @doc """
   Gets a single organization.
 

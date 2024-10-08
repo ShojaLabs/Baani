@@ -53,7 +53,8 @@ defmodule ShojaWeb.OrganizationLive.FormComponent do
     save_organization(socket, socket.assigns.action, organization_params)
   end
 
-  defp save_organization(socket, :edit, organization_params) do
+  defp save_organization(socket, :edit, organization_params)
+       when socket.assigns.organization.creator_id == socket.assigns.user_id do
     case Organizations.update_organization(socket.assigns.organization, organization_params) do
       {:ok, organization} ->
         notify_parent({:saved, organization})
@@ -68,7 +69,14 @@ defmodule ShojaWeb.OrganizationLive.FormComponent do
     end
   end
 
+  defp save_organization(socket, :edit, _organization_params),
+    do:
+      {:noreply,
+       socket |> put_flash(:error, "Invalid action") |> push_patch(to: socket.assigns.patch)}
+
   defp save_organization(socket, :new, organization_params) do
+    organization_params = Map.put(organization_params, "creator_id", socket.assigns.user_id)
+
     case Organizations.create_organization(organization_params) do
       {:ok, organization} ->
         notify_parent({:saved, organization})
