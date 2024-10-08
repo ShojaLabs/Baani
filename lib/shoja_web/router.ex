@@ -72,6 +72,13 @@ defmodule ShojaWeb.Router do
       live "/user_profiles", UserProfileLive.Index, :index
       live "/user_profiles/new", UserProfileLive.Index, :new
       live "/user_profiles/:id/edit", UserProfileLive.Index, :edit
+
+      live "/organizations", OrganizationLive.Index, :index
+      live "/organizations/new", OrganizationLive.Index, :new
+      live "/organizations/:id/edit", OrganizationLive.Index, :edit
+
+      live "/organizations/:id", OrganizationLive.Show, :show
+      live "/organizations/:id/show/edit", OrganizationLive.Show, :edit
     end
   end
 
