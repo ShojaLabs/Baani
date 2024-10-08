@@ -3,12 +3,12 @@ defmodule ShojaWeb.UserLoginLive do
 
   def render(assigns) do
     ~H"""
-    <div class="mx-auto max-w-sm">
+    <div class="mx-auto max-w-md bg-white shadow-sm rounded-lg px-8 pt-6 pb-8 mb-4">
       <.header class="text-center">
         Log in to account
         <:subtitle>
           Don't have an account?
-          <.link navigate={~p"/users/register"} class="font-semibold text-brand hover:underline">
+          <.link navigate={~p"/users/register"} class="font-semibold text-brand hover:underline text-blue-600 hover:text-blue-700">
             Sign up
           </.link>
           for an account now.
@@ -27,7 +27,7 @@ defmodule ShojaWeb.UserLoginLive do
         </:actions>
         <:actions>
           <.button phx-disable-with="Logging in..." class="w-full">
-            Log in <span aria-hidden="true">→</span>
+            Log In
           </.button>
         </:actions>
       </.simple_form>

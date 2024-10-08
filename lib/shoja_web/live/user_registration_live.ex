@@ -6,12 +6,12 @@ defmodule ShojaWeb.UserRegistrationLive do
 
   def render(assigns) do
     ~H"""
-    <div class="mx-auto max-w-sm">
+    <div class="mx-auto max-w-md bg-white shadow-sm rounded-lg px-8 pt-6 pb-8 mb-4">
       <.header class="text-center">
         Register for an account
         <:subtitle>
           Already registered?
-          <.link navigate={~p"/users/log_in"} class="font-semibold text-brand hover:underline">
+          <.link navigate={~p"/users/log_in"} class="font-semibold text-brand hover:underline text-blue-600 hover:text-blue-700">
             Log in
           </.link>
           to your account now.

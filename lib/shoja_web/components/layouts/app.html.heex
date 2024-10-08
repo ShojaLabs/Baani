@@ -1,5 +1,5 @@
 <header class="sticky top-0 z-50">
-  <nav class="bg-white shadow-sm">
+  <nav class="bg-white border-b border-gray-100">
     <div class="mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-16">
         <div class="flex items-center">
@@ -10,29 +10,29 @@
         <ul class="hidden md:flex items-center space-x-6">
           <%= if @current_user do %>
             <li class="relative" x-data="{ open: false }">
-              <button @click="open = !open" class="flex items-center text-base font-semibold text-gray-800 hover:text-blue-500 px-4 py-2 rounded transition duration-150 ease-in-out">
+              <button @click="open = !open" class="flex items-center text-base text-gray-700 hover:text-blue-600 px-4 py-2 rounded transition duration-150 ease-in-out">
                 <%= @current_user.email %>
                 <svg class="ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                   <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                 </svg>
               </button>
-              <div x-show="open" @click.away="open = false" class="absolute right-0 mt-0 w-48 bg-white rounded-md shadow-xl py-1 border border-gray-100 ring-1 ring-black ring-opacity-5">
+              <div x-show="open" @click.away="open = false" class="absolute right-0 mt-0 w-48  rounded-md shadow-xl py-1 border border-gray-100 ring-1 ring-black ring-opacity-5">
                 <.link
                   href={~p"/users/settings"}
-                  class="block px-4 py-2 text-sm text-gray-800 hover:bg-blue-100 hover:text-blue-500"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100 hover:text-blue-600"
                 >
                   Settings
                 </.link>
                 <.link
                   href={~p"/user_profiles"}
-                  class="block px-4 py-2 text-sm text-gray-800 hover:bg-blue-100 hover:text-blue-500"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100 hover:text-blue-600"
                 >
                   Profiles
                 </.link>
                 <.link
                   href={~p"/users/log_out"}
                   method="delete"
-                  class="block px-4 py-2 text-sm text-gray-800 hover:bg-red-100 hover:text-red-500"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-100 hover:text-red-600"
                 >
                   Log out
                 </.link>
@@ -41,16 +41,8 @@
           <% else %>
             <li>
               <.link
-                href={~p"/users/register"}
-                class="text-base font-semibold text-gray-800 hover:text-blue-500 px-4 py-2 rounded transition duration-150 ease-in-out"
-              >
-                Register
-              </.link>
-            </li>
-            <li>
-              <.link
                 href={~p"/users/log_in"}
-                class="text-base font-semibold bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-150 ease-in-out"
+                class="text-base font-semibold bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-150 ease-in-out"
               >
                 Log in
               </.link>
