@@ -1,12 +1,12 @@
-defmodule Shoja.OrganizationsTest do
-  use Shoja.DataCase
+defmodule Baani.OrganizationsTest do
+  use Baani.DataCase
 
-  alias Shoja.Organizations
+  alias Baani.Organizations
 
   describe "organizations" do
-    alias Shoja.Organizations.Organization
+    alias Baani.Organizations.Organization
 
-    import Shoja.OrganizationsFixtures
+    import Baani.OrganizationsFixtures
 
     @invalid_attrs %{name: nil, domain: nil, description: nil, unique_name: nil, logo: nil, is_private: nil}
 

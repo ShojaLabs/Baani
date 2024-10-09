@@ -1,7 +1,7 @@
-defmodule Shoja.AccountsFixtures do
+defmodule Baani.AccountsFixtures do
   @moduledoc """
   This module defines test helpers for creating
-  entities via the `Shoja.Accounts` context.
+  entities via the `Baani.Accounts` context.
   """
 
   def unique_user_email, do: "user#{System.unique_integer()}@example.com"
@@ -18,7 +18,7 @@ defmodule Shoja.AccountsFixtures do
     {:ok, user} =
       attrs
       |> valid_user_attributes()
-      |> Shoja.Accounts.register_user()
+      |> Baani.Accounts.register_user()
 
     user
   end
@@ -41,7 +41,7 @@ defmodule Shoja.AccountsFixtures do
         first_name: "some first_name",
         last_name: "some last_name"
       })
-      |> Shoja.Accounts.create_user_detail()
+      |> Baani.Accounts.create_user_detail()
 
     user_detail
   end
@@ -57,7 +57,7 @@ defmodule Shoja.AccountsFixtures do
         purpose: "some purpose",
         username: "some username"
       })
-      |> Shoja.Accounts.create_user_profile()
+      |> Baani.Accounts.create_user_profile()
 
     user_profile
   end

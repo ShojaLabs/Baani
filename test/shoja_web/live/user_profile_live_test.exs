@@ -1,8 +1,8 @@
-defmodule ShojaWeb.UserProfileLiveTest do
-  use ShojaWeb.ConnCase
+defmodule BaaniWeb.UserProfileLiveTest do
+  use BaaniWeb.ConnCase
 
   import Phoenix.LiveViewTest
-  import Shoja.AccountsFixtures
+  import Baani.AccountsFixtures
 
   @create_attrs %{primary: true, username: "some username", purpose: "some purpose"}
   @update_attrs %{primary: false, username: "some updated username", purpose: "some updated purpose"}

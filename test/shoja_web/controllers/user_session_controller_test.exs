@@ -1,7 +1,7 @@
-defmodule ShojaWeb.UserSessionControllerTest do
-  use ShojaWeb.ConnCase, async: true
+defmodule BaaniWeb.UserSessionControllerTest do
+  use BaaniWeb.ConnCase, async: true
 
-  import Shoja.AccountsFixtures
+  import Baani.AccountsFixtures
 
   setup do
     %{user: user_fixture()}
@@ -35,7 +35,7 @@ defmodule ShojaWeb.UserSessionControllerTest do
           }
         })
 
-      assert conn.resp_cookies["_shoja_web_user_remember_me"]
+      assert conn.resp_cookies["_baani_web_user_remember_me"]
       assert redirected_to(conn) == ~p"/"
     end
 

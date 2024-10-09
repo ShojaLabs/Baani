@@ -1,10 +1,10 @@
-defmodule ShojaWeb.UserResetPasswordLiveTest do
-  use ShojaWeb.ConnCase, async: true
+defmodule BaaniWeb.UserResetPasswordLiveTest do
+  use BaaniWeb.ConnCase, async: true
 
   import Phoenix.LiveViewTest
-  import Shoja.AccountsFixtures
+  import Baani.AccountsFixtures
 
-  alias Shoja.Accounts
+  alias Baani.Accounts
 
   setup do
     user = user_fixture()

@@ -1,8 +1,8 @@
-defmodule ShojaWeb.OrganizationLiveTest do
-  use ShojaWeb.ConnCase
+defmodule BaaniWeb.OrganizationLiveTest do
+  use BaaniWeb.ConnCase
 
   import Phoenix.LiveViewTest
-  import Shoja.OrganizationsFixtures
+  import Baani.OrganizationsFixtures
 
   @create_attrs %{name: "some name", domain: "some domain", description: "some description", unique_name: "some unique_name", logo: "some logo", is_private: true}
   @update_attrs %{name: "some updated name", domain: "some updated domain", description: "some updated description", unique_name: "some updated unique_name", logo: "some updated logo", is_private: false}

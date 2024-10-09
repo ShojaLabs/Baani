@@ -1,11 +1,11 @@
-defmodule ShojaWeb.UserForgotPasswordLiveTest do
-  use ShojaWeb.ConnCase, async: true
+defmodule BaaniWeb.UserForgotPasswordLiveTest do
+  use BaaniWeb.ConnCase, async: true
 
   import Phoenix.LiveViewTest
-  import Shoja.AccountsFixtures
+  import Baani.AccountsFixtures
 
-  alias Shoja.Accounts
-  alias Shoja.Repo
+  alias Baani.Accounts
+  alias Baani.Repo
 
   describe "Forgot password page" do
     test "renders email page", %{conn: conn} do

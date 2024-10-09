@@ -1,4 +1,4 @@
-defmodule Shoja.Repo.Migrations.CreateOrganizations do
+defmodule Baani.Repo.Migrations.CreateOrganizations do
   use Ecto.Migration
 
   def change do

@@ -1,8 +1,8 @@
-defmodule ShojaWeb.UserLoginLiveTest do
-  use ShojaWeb.ConnCase, async: true
+defmodule BaaniWeb.UserLoginLiveTest do
+  use BaaniWeb.ConnCase, async: true
 
   import Phoenix.LiveViewTest
-  import Shoja.AccountsFixtures
+  import Baani.AccountsFixtures
 
   describe "Log in page" do
     test "renders log in page", %{conn: conn} do

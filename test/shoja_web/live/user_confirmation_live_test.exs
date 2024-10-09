@@ -1,11 +1,11 @@
-defmodule ShojaWeb.UserConfirmationLiveTest do
-  use ShojaWeb.ConnCase, async: true
+defmodule BaaniWeb.UserConfirmationLiveTest do
+  use BaaniWeb.ConnCase, async: true
 
   import Phoenix.LiveViewTest
-  import Shoja.AccountsFixtures
+  import Baani.AccountsFixtures
 
-  alias Shoja.Accounts
-  alias Shoja.Repo
+  alias Baani.Accounts
+  alias Baani.Repo
 
   setup do
     %{user: user_fixture()}
