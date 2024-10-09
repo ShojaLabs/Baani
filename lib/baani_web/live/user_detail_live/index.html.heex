@@ -1,0 +1,44 @@
+<.header>
+  Listing User details
+  <:actions>
+    <.link patch={~p"/user_details/new"}>
+      <.button>New User detail</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table
+  id="user_details"
+  rows={@streams.user_details}
+  row_click={fn {_id, user_detail} -> JS.navigate(~p"/user_details/#{user_detail}") end}
+>
+  <:col :let={{_id, user_detail}} label="First name"><%= user_detail.first_name %></:col>
+  <:col :let={{_id, user_detail}} label="Last name"><%= user_detail.last_name %></:col>
+  <:col :let={{_id, user_detail}} label="Bio"><%= user_detail.bio %></:col>
+  <:col :let={{_id, user_detail}} label="Date of birth"><%= user_detail.date_of_birth %></:col>
+  <:action :let={{_id, user_detail}}>
+    <div class="sr-only">
+      <.link navigate={~p"/user_details/#{user_detail}"}>Show</.link>
+    </div>
+    <.link patch={~p"/user_details/#{user_detail}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={{id, user_detail}}>
+    <.link
+      phx-click={JS.push("delete", value: %{id: user_detail.id}) |> hide("##{id}")}
+      data-confirm="Are you sure?"
+    >
+      Delete
+    </.link>
+  </:action>
+</.table>
+
+<.modal :if={@live_action in [:new, :edit]} id="user_detail-modal" show on_cancel={JS.patch(~p"/user_details")}>
+  <.live_component
+    module={BaaniWeb.UserDetailLive.FormComponent}
+    id={@user_detail.id || :new}
+    title={@page_title}
+    action={@live_action}
+    user_detail={@user_detail}
+    patch={~p"/user_details"}
+  />
+</.modal>

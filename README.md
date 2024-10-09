@@ -1,4 +1,4 @@
-# Shoja
+# Baani
 
 To start your Phoenix server:
 

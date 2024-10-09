@@ -3,14 +3,14 @@ services:
     image: postgres:latest # Use the latest version of PostgreSQL
     container_name: esx_postgres_db
     environment:
-      POSTGRES_DB: helloworld_dev # Name of the database to create
+      POSTGRES_DB: baani_dev # Name of the database to create
       POSTGRES_USER: postgres # Username for the database
       POSTGRES_PASSWORD: postgres # Password for the database
     ports:
       - "5432:5432" # Expose PostgreSQL on port 5432
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "pg_isready", "-U", "postgres", "-d", "helloworld_dev"]
+      test: ["CMD", "pg_isready", "-U", "postgres", "-d", "baani_dev"]
       interval: 5s
       timeout: 5s
       retries: 10

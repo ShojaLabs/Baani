@@ -1,4 +1,4 @@
-defmodule Shoja.Repo.Migrations.CreateUserDetails do
+defmodule Baani.Repo.Migrations.CreateUserDetails do
   use Ecto.Migration
 
   def change do

@@ -1,5 +1,5 @@
-defmodule ShojaWeb.PageControllerTest do
-  use ShojaWeb.ConnCase
+defmodule BaaniWeb.PageControllerTest do
+  use BaaniWeb.ConnCase
 
   test "GET /", %{conn: conn} do
     conn = get(conn, ~p"/")

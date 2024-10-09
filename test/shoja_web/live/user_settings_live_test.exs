@@ -1,9 +1,9 @@
-defmodule ShojaWeb.UserSettingsLiveTest do
-  use ShojaWeb.ConnCase, async: true
+defmodule BaaniWeb.UserSettingsLiveTest do
+  use BaaniWeb.ConnCase, async: true
 
-  alias Shoja.Accounts
+  alias Baani.Accounts
   import Phoenix.LiveViewTest
-  import Shoja.AccountsFixtures
+  import Baani.AccountsFixtures
 
   describe "Settings page" do
     test "renders settings page", %{conn: conn} do

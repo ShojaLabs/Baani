@@ -1,8 +1,8 @@
-defmodule ShojaWeb.UserDetailLiveTest do
-  use ShojaWeb.ConnCase
+defmodule BaaniWeb.UserDetailLiveTest do
+  use BaaniWeb.ConnCase
 
   import Phoenix.LiveViewTest
-  import Shoja.AccountsFixtures
+  import Baani.AccountsFixtures
 
   @create_attrs %{first_name: "some first_name", last_name: "some last_name", bio: "some bio", date_of_birth: "2024-10-06"}
   @update_attrs %{first_name: "some updated first_name", last_name: "some updated last_name", bio: "some updated bio", date_of_birth: "2024-10-07"}

@@ -1,0 +1,29 @@
+<.header>
+  User detail <%= @user_detail.id %>
+  <:subtitle>This is a user_detail record from your database.</:subtitle>
+  <:actions>
+    <.link patch={~p"/user_details/#{@user_detail}/show/edit"} phx-click={JS.push_focus()}>
+      <.button>Edit user_detail</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.list>
+  <:item title="First name"><%= @user_detail.first_name %></:item>
+  <:item title="Last name"><%= @user_detail.last_name %></:item>
+  <:item title="Bio"><%= @user_detail.bio %></:item>
+  <:item title="Date of birth"><%= @user_detail.date_of_birth %></:item>
+</.list>
+
+<.back navigate={~p"/user_details"}>Back to user_details</.back>
+
+<.modal :if={@live_action == :edit} id="user_detail-modal" show on_cancel={JS.patch(~p"/user_details/#{@user_detail}")}>
+  <.live_component
+    module={BaaniWeb.UserDetailLive.FormComponent}
+    id={@user_detail.id}
+    title={@page_title}
+    action={@live_action}
+    user_detail={@user_detail}
+    patch={~p"/user_details/#{@user_detail}"}
+  />
+</.modal>

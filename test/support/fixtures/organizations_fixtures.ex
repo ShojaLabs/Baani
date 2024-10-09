@@ -1,7 +1,7 @@
-defmodule Shoja.OrganizationsFixtures do
+defmodule Baani.OrganizationsFixtures do
   @moduledoc """
   This module defines test helpers for creating
-  entities via the `Shoja.Organizations` context.
+  entities via the `Baani.Organizations` context.
   """
 
   @doc """
@@ -18,7 +18,7 @@ defmodule Shoja.OrganizationsFixtures do
         name: "some name",
         unique_name: "some unique_name"
       })
-      |> Shoja.Organizations.create_organization()
+      |> Baani.Organizations.create_organization()
 
     organization
   end

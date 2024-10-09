@@ -1,8 +1,8 @@
-defmodule ShojaWeb.UserRegistrationLiveTest do
-  use ShojaWeb.ConnCase, async: true
+defmodule BaaniWeb.UserRegistrationLiveTest do
+  use BaaniWeb.ConnCase, async: true
 
   import Phoenix.LiveViewTest
-  import Shoja.AccountsFixtures
+  import Baani.AccountsFixtures
 
   describe "Registration page" do
     test "renders registration page", %{conn: conn} do

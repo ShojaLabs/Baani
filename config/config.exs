@@ -7,19 +7,19 @@
 # General application configuration
 import Config
 
-config :shoja,
-  ecto_repos: [Shoja.Repo],
+config :baani,
+  ecto_repos: [Baani.Repo],
   generators: [timestamp_type: :utc_datetime]
 
 # Configures the endpoint
-config :shoja, ShojaWeb.Endpoint,
+config :baani, BaaniWeb.Endpoint,
   url: [host: "localhost"],
   adapter: Bandit.PhoenixAdapter,
   render_errors: [
-    formats: [html: ShojaWeb.ErrorHTML, json: ShojaWeb.ErrorJSON],
+    formats: [html: BaaniWeb.ErrorHTML, json: BaaniWeb.ErrorJSON],
     layout: false
   ],
-  pubsub_server: Shoja.PubSub,
+  pubsub_server: Baani.PubSub,
   live_view: [signing_salt: "E9+qM+Yc"]
 
 # Configures the mailer
@@ -29,12 +29,12 @@ config :shoja, ShojaWeb.Endpoint,
 #
 # For production it's recommended to configure a different adapter
 # at the `config/runtime.exs`.
-config :shoja, Shoja.Mailer, adapter: Swoosh.Adapters.Local
+config :baani, Baani.Mailer, adapter: Swoosh.Adapters.Local
 
 # Configure esbuild (the version is required)
 config :esbuild,
   version: "0.17.11",
-  shoja: [
+  baani: [
     args:
       ~w(js/app.js --bundle --target=es2017 --outdir=../priv/static/assets --external:/fonts/* --external:/images/*),
     cd: Path.expand("../assets", __DIR__),
@@ -44,7 +44,7 @@ config :esbuild,
 # Configure tailwind (the version is required)
 config :tailwind,
   version: "3.4.3",
-  shoja: [
+  baani: [
     args: ~w(
       --config=tailwind.config.js
       --input=css/app.css

@@ -1,4 +1,4 @@
-defmodule Shoja.Repo.Migrations.CreateUsersAuthTables do
+defmodule Baani.Repo.Migrations.CreateUsersAuthTables do
   use Ecto.Migration
 
   def change do

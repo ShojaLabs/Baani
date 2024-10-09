@@ -1,11 +1,11 @@
 import Config
 
 # Configure your database
-config :shoja, Shoja.Repo,
+config :baani, Baani.Repo,
   username: "postgres",
   password: "postgres",
   hostname: "localhost",
-  database: "shoja_dev",
+  database: "baani_dev",
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
@@ -16,7 +16,7 @@ config :shoja, Shoja.Repo,
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we can use it
 # to bundle .js and .css sources.
-config :shoja, ShojaWeb.Endpoint,
+config :baani, BaaniWeb.Endpoint,
   # Binding to loopback ipv4 address prevents access from other machines.
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
   http: [ip: {127, 0, 0, 1}, port: 4000],
@@ -25,8 +25,8 @@ config :shoja, ShojaWeb.Endpoint,
   debug_errors: true,
   secret_key_base: "9tu2t9jU3tQJp3Xn+rQlL2BMd83kBLIPePYYqAaRA4A4B/k1IVRKAh4pbanssZhe",
   watchers: [
-    esbuild: {Esbuild, :install_and_run, [:shoja, ~w(--sourcemap=inline --watch)]},
-    tailwind: {Tailwind, :install_and_run, [:shoja, ~w(--watch)]}
+    esbuild: {Esbuild, :install_and_run, [:baani, ~w(--sourcemap=inline --watch)]},
+    tailwind: {Tailwind, :install_and_run, [:baani, ~w(--watch)]}
   ]
 
 # ## SSL Support
@@ -53,17 +53,17 @@ config :shoja, ShojaWeb.Endpoint,
 # different ports.
 
 # Watch static and templates for browser reloading.
-config :shoja, ShojaWeb.Endpoint,
+config :baani, BaaniWeb.Endpoint,
   live_reload: [
     patterns: [
       ~r"priv/static/(?!uploads/).*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
-      ~r"lib/shoja_web/(controllers|live|components)/.*(ex|heex)$"
+      ~r"lib/baani_web/(controllers|live|components)/.*(ex|heex)$"
     ]
   ]
 
 # Enable dev routes for dashboard and mailbox
-config :shoja, dev_routes: true
+config :baani, dev_routes: true
 
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"

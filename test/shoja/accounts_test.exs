@@ -1,10 +1,10 @@
-defmodule Shoja.AccountsTest do
-  use Shoja.DataCase
+defmodule Baani.AccountsTest do
+  use Baani.DataCase
 
-  alias Shoja.Accounts
+  alias Baani.Accounts
 
-  import Shoja.AccountsFixtures
-  alias Shoja.Accounts.{User, UserToken}
+  import Baani.AccountsFixtures
+  alias Baani.Accounts.{User, UserToken}
 
   describe "get_user_by_email/1" do
     test "does not return the user if the email does not exist" do
@@ -507,9 +507,9 @@ defmodule Shoja.AccountsTest do
   end
 
   describe "user_details" do
-    alias Shoja.Accounts.UserDetail
+    alias Baani.Accounts.UserDetail
 
-    import Shoja.AccountsFixtures
+    import Baani.AccountsFixtures
 
     @invalid_attrs %{first_name: nil, last_name: nil, bio: nil, date_of_birth: nil}
 
@@ -567,9 +567,9 @@ defmodule Shoja.AccountsTest do
   end
 
   describe "user_profiles" do
-    alias Shoja.Accounts.UserProfile
+    alias Baani.Accounts.UserProfile
 
-    import Shoja.AccountsFixtures
+    import Baani.AccountsFixtures
 
     @invalid_attrs %{primary: nil, username: nil, purpose: nil}
 
