@@ -1,28 +1,63 @@
-<header class="px-4 sm:px-6 lg:px-8">
-  <div class="flex items-center justify-between border-b border-zinc-100 py-3 text-sm">
-    <div class="flex items-center gap-4">
-      <a href="/">
-        <img src={~p"/images/logo.svg"} width="36" />
-      </a>
-      <p class="bg-brand/5 text-brand rounded-full px-2 font-medium leading-6">
-        v<%= Application.spec(:phoenix, :vsn) %>
-      </p>
+<header class="sticky top-0 z-50">
+  <nav class="bg-white border-b border-gray-100">
+    <div class="mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center">
+          <a href="/">
+            <img src={~p"/images/logo.svg"} width="36" />
+          </a>
+        </div>
+        <ul class="hidden md:flex items-center space-x-6">
+          <%= if @current_user do %>
+            <li class="relative" x-data="{ open: false }">
+              <button @click="open = !open" class="flex items-center text-base text-gray-700 hover:text-blue-600 px-4 py-2 rounded transition duration-150 ease-in-out">
+                <%= @current_user.email %>
+                <svg class="ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+              </button>
+              <div x-show="open" @click.away="open = false" class="absolute right-0 mt-0 w-48  rounded-md shadow-xl py-1 border border-gray-100 ring-1 ring-black ring-opacity-5">
+                <.link
+                  href={~p"/users/settings"}
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100 hover:text-blue-600"
+                >
+                  Settings
+                </.link>
+                <.link
+                  href={~p"/user_profiles"}
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100 hover:text-blue-600"
+                >
+                  Profiles
+                </.link>
+                <.link
+                href={~p"/organizations"}
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100 hover:text-blue-600"
+              >
+                  Organizations
+                </.link>
+                <.link
+                  href={~p"/users/log_out"}
+                  method="delete"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-100 hover:text-red-600"
+                >
+                  Log out
+                </.link>
+              </div>
+            </li>
+          <% else %>
+            <li>
+              <.link
+                href={~p"/users/log_in"}
+                class="text-base font-semibold bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-150 ease-in-out"
+              >
+                Log in
+              </.link>
+            </li>
+          <% end %>
+        </ul>
+      </div>
     </div>
-    <div class="flex items-center gap-4 font-semibold leading-6 text-zinc-900">
-      <a href="https://twitter.com/elixirphoenix" class="hover:text-zinc-700">
-        @elixirphoenix
-      </a>
-      <a href="https://github.com/phoenixframework/phoenix" class="hover:text-zinc-700">
-        GitHub
-      </a>
-      <a
-        href="https://hexdocs.pm/phoenix/overview.html"
-        class="rounded-lg bg-zinc-100 px-2 py-1 hover:bg-zinc-200/80"
-      >
-        Get Started <span aria-hidden="true">&rarr;</span>
-      </a>
-    </div>
-  </div>
+  </nav>
 </header>
 <main class="px-4 py-20 sm:px-6 lg:px-8">
   <div class="mx-auto max-w-2xl">
@@ -30,3 +65,4 @@
     <%= @inner_content %>
   </div>
 </main>
+

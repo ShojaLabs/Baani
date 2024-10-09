@@ -42,3 +42,8 @@ liveSocket.connect()
 // >> liveSocket.disableLatencySim()
 window.liveSocket = liveSocket
 
+import Alpine from "alpinejs"
+
+window.Alpine = Alpine
+Alpine.start()
+
