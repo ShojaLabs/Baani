@@ -46,6 +46,6 @@ It's an answer to all our (my) complaints about existing tools—a one-stop solu
 
 If you liked what you've just read a ⭐ would be very encouraging.
 
-Best regards,
-Pranav Kanade
-chief Janitor, Baani
+Best regards,<br/>
+Pranav Kanade<br/>
+Chief Janitor, Baani
