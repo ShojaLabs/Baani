@@ -1,0 +1,18 @@
+services:
+  postgres:
+    image: postgres:latest # Use the latest version of PostgreSQL
+    container_name: baani_dev
+    environment:
+      POSTGRES_DB: baani_dev # Name of the database to create
+      POSTGRES_USER: postgres # Username for the database
+      POSTGRES_PASSWORD: postgres # Password for the database
+    ports:
+      - "5432:5432" # Expose PostgreSQL on port 5432
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres", "-d", "baani_dev"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    volumes:
+      - ./stacks/data:/var/lib/postgresql/data # Persist data
