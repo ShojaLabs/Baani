@@ -2,8 +2,12 @@
   <.flash_group flash={@flash} />
   <BaaniWeb.ChannelBar.navbar current_user={@current_user} />
   <BaaniWeb.SyndicateBar.navbar current_user={@current_user} />
-  <div class="flex-1 pr-2">
+  <div class="flex-1 pr-2 relative h-full flex flex-col gap-2">
     <BaaniWeb.Navbar.navbar current_user={@current_user} />
-    <%= @inner_content %>
+    <div class="flex-1 relative h-full">
+      <div class="absolute w-full h-full overflow-y-auto">
+        <%= @inner_content %>
+      </div>
+    </div>
   </div>
 </main>
