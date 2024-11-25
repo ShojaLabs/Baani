@@ -1,9 +1,12 @@
-<div class="mx-auto max-w-sm">
-  <.header class="text-center">
-    Register for an account
+<div class="mx-auto max-w-sm pt-32">
+  <.header class="font-extralight">
+    Welcome!
     <:subtitle>
       Already registered?
-      <.link navigate={~p"/users/log_in"} class="font-semibold text-brand hover:underline">
+      <.link
+        navigate={~p"/users/log_in"}
+        class="font-semibold text-accent hover:underline opacity-100"
+      >
         Log in
       </.link>
       to your account now.
@@ -19,7 +22,12 @@
     <.input field={f[:password]} type="password" label="Password" required />
 
     <:actions>
-      <.button phx-disable-with="Creating account..." class="w-full">Create an account</.button>
+      <button
+        phx-disable-with="Creating account..."
+        class="w-full btn btn-accent btn-lg btn-block font-normal"
+      >
+        Create your account
+      </button>
     </:actions>
   </.simple_form>
 </div>

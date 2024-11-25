@@ -25,7 +25,7 @@ defmodule BaaniWeb.Navbar do
           <BaaniWeb.ProfileMenu.menu current_user={@current_user} />
         <% else %>
           <%= unless @conn.request_path == ~p"/users/log_in" do %>
-            <.link href={~p"/users/log_in"} class={["btn btn-outline"]}>
+            <.link href={~p"/users/log_in"} class={["btn btn-neutral"]}>
               Login
             </.link>
           <% end %>
@@ -35,7 +35,7 @@ defmodule BaaniWeb.Navbar do
               class={[
                 "btn",
                 ((@conn.request_path == ~p"/users/log_in" ||
-                    @conn.request_path == ~p"/users/register") && "btn-outline") ||
+                    @conn.request_path == ~p"/users/register") && "btn-neutral") ||
                   "btn-primary"
               ]}
             >
