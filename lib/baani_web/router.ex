@@ -47,6 +47,11 @@ defmodule BaaniWeb.Router do
 
   ## Authentication routes
 
+  scope "/auth", BaaniWeb do
+    get "/:provider", GoogleAuthController, :request
+    get "/:provider/callback", GoogleAuthController, :callback
+  end
+
   scope "/", BaaniWeb do
     pipe_through [:browser, :redirect_if_user_is_authenticated]
 

@@ -60,7 +60,8 @@ defmodule Baani.MixProject do
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.1.1"},
       {:bandit, "~> 1.5"},
-      {:ueberauth_google, "~> 0.12.1"}
+      {:ueberauth_google, "~> 0.12.1"},
+      {:envy, "~> 1.1.1"}
     ]
   end
 

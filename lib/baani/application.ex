@@ -7,6 +7,10 @@ defmodule Baani.Application do
 
   @impl true
   def start(_type, _args) do
+    unless Mix.env() == :prod do
+      Envy.auto_load()
+    end
+
     children = [
       BaaniWeb.Telemetry,
       Baani.Repo,
