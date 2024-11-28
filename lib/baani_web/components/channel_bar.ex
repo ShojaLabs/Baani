@@ -9,7 +9,7 @@ defmodule BaaniWeb.ChannelBar do
   def navbar(assigns) do
     ~H"""
     <%= if @current_user && !String.starts_with?(@conn.request_path, "/syndicates") do %>
-      <div class="card bg-base-100 w-60 min-h-full rounded-none border-r border-base-200 pr-2 bg-opacity-90 backdrop-blur transition-shadow duration-100 [transform:translate3d(0,0,0)] shadow-sm">
+      <div class="card bg-base-100 w-60 min-h-full rounded-none border-r border-base-200 pr-2">
         <button class="btn">Click me</button>
       </div>
     <% end %>

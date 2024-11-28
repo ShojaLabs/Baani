@@ -5,24 +5,45 @@
     </h1>
     <.link href={~p"/syndicates/new"}>
       <button class="btn btn-primary">
-        Create New Syndicate <.icon name="tabler-apps" class="size-5" />
+        New <.icon name="tabler-apps" class="size-5" />
       </button>
     </.link>
   </div>
 
-  <.table id="syndicates" rows={@syndicates} row_click={&JS.navigate(~p"/syndicates/#{&1}")}>
-    <:col :let={syndicate} label="Title"><%= syndicate.title %></:col>
-    <:col :let={syndicate} label="Unique identifier"><%= syndicate.unique_identifier %></:col>
-    <:action :let={syndicate}>
-      <div class="sr-only">
-        <.link navigate={~p"/syndicates/#{syndicate}"}>Show</.link>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
+    <%= for syndicate <- @syndicates do %>
+      <div class="card bg-base-200 shadow-xl group">
+        <div class="card-body p-6">
+          <div class="flex justify-between items-center">
+            <h2 class="card-title"><%= syndicate.title %></h2>
+            <.link
+              navigate={~p"/syndicates/#{syndicate}/edit"}
+              class="invisible group-hover:visible transition-opacity"
+            >
+              <button class="btn btn-sm size-8 p-0">
+                <.icon name="tabler-pencil" class="size-4" />
+              </button>
+            </.link>
+          </div>
+          <p class="text-sm opacity-70"><%= syndicate.unique_identifier %></p>
+          <div class="card-actions justify-end mt-4 invisible group-hover:visible transition-opacity">
+            <.link navigate={~p"/syndicates/#{syndicate}"}>
+              <button class="btn btn-neutral btn-sm">
+                Details <.icon name="tabler-notes" class="size-4" />
+              </button>
+            </.link>
+            <%!-- <.link
+              href={~p"/syndicates/#{syndicate}"}
+              method="delete"
+              data-confirm="Are you sure?"
+            >
+              <button class="btn btn-error btn-sm">
+                Delete <.icon name="tabler-trash" class="size-4" />
+              </button>
+            </.link> --%>
+          </div>
+        </div>
       </div>
-      <.link navigate={~p"/syndicates/#{syndicate}/edit"}>Edit</.link>
-    </:action>
-    <:action :let={syndicate}>
-      <.link href={~p"/syndicates/#{syndicate}"} method="delete" data-confirm="Are you sure?">
-        Delete
-      </.link>
-    </:action>
-  </.table>
+    <% end %>
+  </div>
 </div>
