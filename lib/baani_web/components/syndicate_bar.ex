@@ -14,7 +14,8 @@ defmodule BaaniWeb.SyndicateBar do
           <.link navigate={~p"/syndicates"}>
             <div class="tooltip tooltip-right tooltip-primary" data-tip="Your Dashboard">
               <button class="btn btn-primary w-12 p-0">
-                <.icon name="hero-queue-list" class="h-5 w-5" />
+                <%!-- <.icon name="hero-queue-list" class="h-5 w-5" /> --%>
+                <.icon name="tabler-bulb" />
               </button>
             </div>
           </.link>
@@ -58,7 +59,7 @@ defmodule BaaniWeb.SyndicateBar do
         <.link navigate={~p"/syndicates"}>
           <div class="tooltip tooltip-right tooltip-primary" data-tip="Find more syndicates!">
             <button class="btn btn-primary btn-outline w-12 p-0">
-              <.icon name="hero-globe-asia-australia" class="h-5 w-5" />
+              <.icon name="tabler-radar" />
             </button>
           </div>
         </.link>

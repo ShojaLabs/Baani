@@ -61,7 +61,8 @@ defmodule Baani.MixProject do
       {:dns_cluster, "~> 0.1.1"},
       {:bandit, "~> 1.5"},
       {:ueberauth_google, "~> 0.12.1"},
-      {:envy, "~> 1.1.1"}
+      {:envy, "~> 1.1.1"},
+      {:tabler_icons, github: "tabler/tabler-icons", app: false, compile: false, sparse: "icons"}
     ]
   end
 
