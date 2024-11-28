@@ -3,9 +3,9 @@ defmodule BaaniWeb.SyndicateControllerTest do
 
   import Baani.SyndicatesFixtures
 
-  @create_attrs %{title: "some title", unique_identifier: "some unique_identifier"}
-  @update_attrs %{title: "some updated title", unique_identifier: "some updated unique_identifier"}
-  @invalid_attrs %{title: nil, unique_identifier: nil}
+  @create_attrs %{description: "some description", title: "some title", unique_identifier: "some unique_identifier", bio: "some bio", website: "some website", logo_url: "some logo_url", banner_url: "some banner_url", twitter_url: "some twitter_url", facebook_url: "some facebook_url", instagram_url: "some instagram_url", linkedin_url: "some linkedin_url", youtube_url: "some youtube_url", github_url: "some github_url"}
+  @update_attrs %{description: "some updated description", title: "some updated title", unique_identifier: "some updated unique_identifier", bio: "some updated bio", website: "some updated website", logo_url: "some updated logo_url", banner_url: "some updated banner_url", twitter_url: "some updated twitter_url", facebook_url: "some updated facebook_url", instagram_url: "some updated instagram_url", linkedin_url: "some updated linkedin_url", youtube_url: "some updated youtube_url", github_url: "some updated github_url"}
+  @invalid_attrs %{description: nil, title: nil, unique_identifier: nil, bio: nil, website: nil, logo_url: nil, banner_url: nil, twitter_url: nil, facebook_url: nil, instagram_url: nil, linkedin_url: nil, youtube_url: nil, github_url: nil}
 
   describe "index" do
     test "lists all syndicates", %{conn: conn} do
@@ -55,7 +55,7 @@ defmodule BaaniWeb.SyndicateControllerTest do
       assert redirected_to(conn) == ~p"/syndicates/#{syndicate}"
 
       conn = get(conn, ~p"/syndicates/#{syndicate}")
-      assert html_response(conn, 200) =~ "some updated title"
+      assert html_response(conn, 200) =~ "some updated description"
     end
 
     test "renders errors when data is invalid", %{conn: conn, syndicate: syndicate} do

@@ -25,7 +25,8 @@
               </button>
             </.link>
           </div>
-          <p class="text-sm opacity-70"><%= syndicate.unique_identifier %></p>
+          <p class="text-sm opacity-70"><%= syndicate.bio %></p>
+          <p class="text-sm opacity-70"><%= syndicate.description %></p>
           <div class="card-actions justify-end mt-4 invisible group-hover:visible transition-opacity">
             <.link navigate={~p"/syndicates/#{syndicate}"}>
               <button class="btn btn-neutral btn-sm">

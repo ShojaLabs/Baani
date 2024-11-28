@@ -11,8 +11,19 @@ defmodule Baani.SyndicatesFixtures do
     {:ok, syndicate} =
       attrs
       |> Enum.into(%{
+        banner_url: "some banner_url",
+        bio: "some bio",
+        description: "some description",
+        facebook_url: "some facebook_url",
+        github_url: "some github_url",
+        instagram_url: "some instagram_url",
+        linkedin_url: "some linkedin_url",
+        logo_url: "some logo_url",
         title: "some title",
-        unique_identifier: "some unique_identifier"
+        twitter_url: "some twitter_url",
+        unique_identifier: "some unique_identifier",
+        website: "some website",
+        youtube_url: "some youtube_url"
       })
       |> Baani.Syndicates.create_syndicate()
 

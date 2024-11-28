@@ -8,7 +8,21 @@ defmodule Baani.SyndicatesTest do
 
     import Baani.SyndicatesFixtures
 
-    @invalid_attrs %{title: nil, unique_identifier: nil}
+    @invalid_attrs %{
+      description: nil,
+      title: nil,
+      unique_identifier: nil,
+      bio: nil,
+      website: nil,
+      logo_url: nil,
+      banner_url: nil,
+      twitter_url: nil,
+      facebook_url: nil,
+      instagram_url: nil,
+      linkedin_url: nil,
+      youtube_url: nil,
+      github_url: nil
+    }
 
     test "list_syndicates/0 returns all syndicates" do
       syndicate = syndicate_fixture()
@@ -21,11 +35,36 @@ defmodule Baani.SyndicatesTest do
     end
 
     test "create_syndicate/1 with valid data creates a syndicate" do
-      valid_attrs = %{title: "some title", unique_identifier: "some unique_identifier"}
+      valid_attrs = %{
+        description: "some description",
+        title: "some title",
+        unique_identifier: "some unique_identifier",
+        bio: "some bio",
+        website: "some website",
+        logo_url: "some logo_url",
+        banner_url: "some banner_url",
+        twitter_url: "some twitter_url",
+        facebook_url: "some facebook_url",
+        instagram_url: "some instagram_url",
+        linkedin_url: "some linkedin_url",
+        youtube_url: "some youtube_url",
+        github_url: "some github_url"
+      }
 
       assert {:ok, %Syndicate{} = syndicate} = Syndicates.create_syndicate(valid_attrs)
+      assert syndicate.description == "some description"
       assert syndicate.title == "some title"
       assert syndicate.unique_identifier == "some unique_identifier"
+      assert syndicate.bio == "some bio"
+      assert syndicate.website == "some website"
+      assert syndicate.logo_url == "some logo_url"
+      assert syndicate.banner_url == "some banner_url"
+      assert syndicate.twitter_url == "some twitter_url"
+      assert syndicate.facebook_url == "some facebook_url"
+      assert syndicate.instagram_url == "some instagram_url"
+      assert syndicate.linkedin_url == "some linkedin_url"
+      assert syndicate.youtube_url == "some youtube_url"
+      assert syndicate.github_url == "some github_url"
     end
 
     test "create_syndicate/1 with invalid data returns error changeset" do
@@ -34,11 +73,39 @@ defmodule Baani.SyndicatesTest do
 
     test "update_syndicate/2 with valid data updates the syndicate" do
       syndicate = syndicate_fixture()
-      update_attrs = %{title: "some updated title", unique_identifier: "some updated unique_identifier"}
 
-      assert {:ok, %Syndicate{} = syndicate} = Syndicates.update_syndicate(syndicate, update_attrs)
+      update_attrs = %{
+        description: "some updated description",
+        title: "some updated title",
+        unique_identifier: "some updated unique_identifier",
+        bio: "some updated bio",
+        website: "some updated website",
+        logo_url: "some updated logo_url",
+        banner_url: "some updated banner_url",
+        twitter_url: "some updated twitter_url",
+        facebook_url: "some updated facebook_url",
+        instagram_url: "some updated instagram_url",
+        linkedin_url: "some updated linkedin_url",
+        youtube_url: "some updated youtube_url",
+        github_url: "some updated github_url"
+      }
+
+      assert {:ok, %Syndicate{} = syndicate} =
+               Syndicates.update_syndicate(syndicate, update_attrs)
+
+      assert syndicate.description == "some updated description"
       assert syndicate.title == "some updated title"
       assert syndicate.unique_identifier == "some updated unique_identifier"
+      assert syndicate.bio == "some updated bio"
+      assert syndicate.website == "some updated website"
+      assert syndicate.logo_url == "some updated logo_url"
+      assert syndicate.banner_url == "some updated banner_url"
+      assert syndicate.twitter_url == "some updated twitter_url"
+      assert syndicate.facebook_url == "some updated facebook_url"
+      assert syndicate.instagram_url == "some updated instagram_url"
+      assert syndicate.linkedin_url == "some updated linkedin_url"
+      assert syndicate.youtube_url == "some updated youtube_url"
+      assert syndicate.github_url == "some updated github_url"
     end
 
     test "update_syndicate/2 with invalid data returns error changeset" do
