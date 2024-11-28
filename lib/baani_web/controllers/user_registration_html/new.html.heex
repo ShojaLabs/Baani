@@ -1,0 +1,39 @@
+<div class="mx-auto w-[448px] pt-20">
+  <div class="card card-bordered border-neutral">
+    <div class="card-body">
+      <.header class="font-extralight mb-10">
+        Welcome!
+        <:subtitle>
+          Already registered?
+          <.link
+            navigate={~p"/users/log_in"}
+            class="font-semibold text-accent hover:underline opacity-100"
+          >
+            Log in
+          </.link>
+          to your account now.
+        </:subtitle>
+      </.header>
+
+      <BaaniWeb.GoogleAuthButton.google_login />
+      <div class="divider">OR</div>
+      <.simple_form :let={f} for={@changeset} action={~p"/users/register"}>
+        <.error :if={@changeset.action == :insert}>
+          Oops, something went wrong! Please check the errors below.
+        </.error>
+
+        <.input field={f[:email]} type="email" label="Email" required />
+        <.input field={f[:password]} type="password" label="Password" required />
+
+        <:actions>
+          <button
+            phx-disable-with="Creating account..."
+            class="w-full btn btn-accent btn-lg btn-block font-normal"
+          >
+            Create your account
+          </button>
+        </:actions>
+      </.simple_form>
+    </div>
+  </div>
+</div>

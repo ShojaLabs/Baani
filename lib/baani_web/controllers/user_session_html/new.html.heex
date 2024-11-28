@@ -1,0 +1,43 @@
+<div class="mx-auto w-[448px] pt-20">
+  <div class="card card-bordered border-neutral">
+    <div class="card-body">
+      <.header class="font-extralight mb-10">
+        Sign in to Baani
+        <:subtitle>
+          Don't have an account?
+          <.link
+            navigate={~p"/users/register"}
+            class="font-semibold text-accent hover:underline opacity-100"
+          >
+            Sign up
+          </.link>
+          for an account now.
+        </:subtitle>
+      </.header>
+
+      <BaaniWeb.GoogleAuthButton.google_login />
+      <div class="divider">OR</div>
+      <.simple_form :let={f} for={@conn.params["user"]} as={:user} action={~p"/users/log_in"}>
+        <.error :if={@error_message}><%= @error_message %></.error>
+
+        <.input field={f[:email]} type="email" label="Email" required />
+        <.input field={f[:password]} type="password" label="Password" required />
+
+        <:actions :let={f}>
+          <.input field={f[:remember_me]} type="checkbox" label="Keep me logged in" />
+          <.link href={~p"/users/reset_password"} class="text-base font-semibold">
+            Forgot your password?
+          </.link>
+        </:actions>
+        <:actions>
+          <button
+            phx-disable-with="Logging in..."
+            class="w-full btn btn-accent btn-lg btn-block font-normal"
+          >
+            Continue with Email
+          </button>
+        </:actions>
+      </.simple_form>
+    </div>
+  </div>
+</div>
