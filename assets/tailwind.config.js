@@ -53,6 +53,8 @@ module.exports = {
             "-webkit-mask": `var(--tabler-${name})`,
             "mask": `var(--tabler-${name})`,
             "mask-repeat": "no-repeat",
+            "mask-size": "contain",
+            "mask-position": "center",
             "background-color": "currentColor",
             "vertical-align": "middle",
             "display": "inline-block",

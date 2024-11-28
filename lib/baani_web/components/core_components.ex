@@ -428,7 +428,7 @@ defmodule BaaniWeb.CoreComponents do
     ~H"""
     <header class={[@actions != [] && "flex items-center justify-between gap-6", @class]}>
       <div>
-        <h1 class="text-5xl font-semibold leading-8">
+        <h1 class="text-5xl font-semibold leading-8 tracking-wide">
           <%= render_slot(@inner_block) %>
         </h1>
         <p :if={@subtitle != []} class="mt-8 text-base leading-6 font-base opacity-70">
