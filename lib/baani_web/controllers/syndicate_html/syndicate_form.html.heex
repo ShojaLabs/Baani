@@ -1,0 +1,10 @@
+<.simple_form :let={f} for={@changeset} action={@action}>
+  <.error :if={@changeset.action}>
+    Oops, something went wrong! Please check the errors below.
+  </.error>
+  <.input field={f[:title]} type="text" label="Title" />
+  <.input field={f[:unique_identifier]} type="text" label="Unique identifier" />
+  <:actions>
+    <.button>Save Syndicate</.button>
+  </:actions>
+</.simple_form>

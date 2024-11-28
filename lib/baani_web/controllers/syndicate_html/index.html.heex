@@ -1,0 +1,24 @@
+<.header>
+  Listing Syndicates
+  <:actions>
+    <.link href={~p"/syndicates/new"}>
+      <.button>New Syndicate</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table id="syndicates" rows={@syndicates} row_click={&JS.navigate(~p"/syndicates/#{&1}")}>
+  <:col :let={syndicate} label="Title"><%= syndicate.title %></:col>
+  <:col :let={syndicate} label="Unique identifier"><%= syndicate.unique_identifier %></:col>
+  <:action :let={syndicate}>
+    <div class="sr-only">
+      <.link navigate={~p"/syndicates/#{syndicate}"}>Show</.link>
+    </div>
+    <.link navigate={~p"/syndicates/#{syndicate}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={syndicate}>
+    <.link href={~p"/syndicates/#{syndicate}"} method="delete" data-confirm="Are you sure?">
+      Delete
+    </.link>
+  </:action>
+</.table>

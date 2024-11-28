@@ -1,0 +1,16 @@
+<.header>
+  Syndicate <%= @syndicate.id %>
+  <:subtitle>This is a syndicate record from your database.</:subtitle>
+  <:actions>
+    <.link href={~p"/syndicates/#{@syndicate}/edit"}>
+      <.button>Edit syndicate</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.list>
+  <:item title="Title"><%= @syndicate.title %></:item>
+  <:item title="Unique identifier"><%= @syndicate.unique_identifier %></:item>
+</.list>
+
+<.back navigate={~p"/syndicates"}>Back to syndicates</.back>

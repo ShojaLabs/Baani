@@ -1,0 +1,8 @@
+<.header>
+  Edit Syndicate <%= @syndicate.id %>
+  <:subtitle>Use this form to manage syndicate records in your database.</:subtitle>
+</.header>
+
+<.syndicate_form changeset={@changeset} action={~p"/syndicates/#{@syndicate}"} />
+
+<.back navigate={~p"/syndicates"}>Back to syndicates</.back>

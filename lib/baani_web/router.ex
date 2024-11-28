@@ -82,4 +82,16 @@ defmodule BaaniWeb.Router do
     get "/users/confirm/:token", UserConfirmationController, :edit
     post "/users/confirm/:token", UserConfirmationController, :update
   end
+
+  scope "/syndicates", BaaniWeb do
+    pipe_through :browser
+
+    get "/", SyndicateController, :index
+    get "/new", SyndicateController, :new
+    post "/", SyndicateController, :create
+    get "/:id", SyndicateController, :show
+    get "/:id/edit", SyndicateController, :edit
+    put "/:id", SyndicateController, :update
+    delete "/:id", SyndicateController, :delete
+  end
 end
