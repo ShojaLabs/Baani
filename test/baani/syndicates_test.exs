@@ -125,4 +125,58 @@ defmodule Baani.SyndicatesTest do
       assert %Ecto.Changeset{} = Syndicates.change_syndicate(syndicate)
     end
   end
+
+  describe "syndicates_members" do
+    alias Baani.Syndicates.Member
+
+    import Baani.SyndicatesFixtures
+
+    @invalid_attrs %{role: nil}
+
+    test "list_syndicates_members/0 returns all syndicates_members" do
+      member = member_fixture()
+      assert Syndicates.list_syndicates_members() == [member]
+    end
+
+    test "get_member!/1 returns the member with given id" do
+      member = member_fixture()
+      assert Syndicates.get_member!(member.id) == member
+    end
+
+    test "create_member/1 with valid data creates a member" do
+      valid_attrs = %{role: "auditor"}
+
+      assert {:ok, %Member{} = member} = Syndicates.create_member(valid_attrs)
+      assert member.role == "auditor"
+    end
+
+    test "create_member/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Syndicates.create_member(@invalid_attrs)
+    end
+
+    test "update_member/2 with valid data updates the member" do
+      member = member_fixture()
+      update_attrs = %{role: "participant"}
+
+      assert {:ok, %Member{} = member} = Syndicates.update_member(member, update_attrs)
+      assert member.role == "participant"
+    end
+
+    test "update_member/2 with invalid data returns error changeset" do
+      member = member_fixture()
+      assert {:error, %Ecto.Changeset{}} = Syndicates.update_member(member, @invalid_attrs)
+      assert member == Syndicates.get_member!(member.id)
+    end
+
+    test "delete_member/1 deletes the member" do
+      member = member_fixture()
+      assert {:ok, %Member{}} = Syndicates.delete_member(member)
+      assert_raise Ecto.NoResultsError, fn -> Syndicates.get_member!(member.id) end
+    end
+
+    test "change_member/1 returns a member changeset" do
+      member = member_fixture()
+      assert %Ecto.Changeset{} = Syndicates.change_member(member)
+    end
+  end
 end

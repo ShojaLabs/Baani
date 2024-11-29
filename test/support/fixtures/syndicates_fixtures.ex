@@ -29,4 +29,18 @@ defmodule Baani.SyndicatesFixtures do
 
     syndicate
   end
+
+  @doc """
+  Generate a member.
+  """
+  def member_fixture(attrs \\ %{}) do
+    {:ok, member} =
+      attrs
+      |> Enum.into(%{
+        role: "auditor"
+      })
+      |> Baani.Syndicates.create_member()
+
+    member
+  end
 end
