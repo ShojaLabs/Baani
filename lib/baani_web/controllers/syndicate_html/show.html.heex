@@ -1,27 +1,97 @@
-<.header>
-  Syndicate <%= @syndicate.id %>
-  <:subtitle>This is a syndicate record from your database.</:subtitle>
-  <:actions>
-    <.link href={~p"/syndicates/#{@syndicate}/edit"}>
-      <.button>Edit syndicate</.button>
+<div class="m-16">
+  <div class="flex justify-between items-center">
+    <div class="flex gap-2 place-items-center">
+      <h1 class="text-3xl font-semibold leading-8 tracking-wide">
+        <%= @syndicate.title %>
+      </h1>
+      <.link href={~p"/syndicates/#{@syndicate}/edit"}>
+        <button class="btn btn-sm btn-square">
+          <.icon name="hero-pencil" class="size-4" />
+        </button>
+      </.link>
+    </div>
+    <.link navigate={~p"/syndicates"}>
+      <button class="btn btn-square btn-sm btn-ghost">
+        <.icon name="hero-x-mark" />
+      </button>
     </.link>
-  </:actions>
-</.header>
+  </div>
 
-<.list>
-  <:item title="Title"><%= @syndicate.title %></:item>
-  <:item title="Unique identifier"><%= @syndicate.unique_identifier %></:item>
-  <:item title="Bio"><%= @syndicate.bio %></:item>
-  <:item title="Description"><%= @syndicate.description %></:item>
-  <:item title="Website"><%= @syndicate.website %></:item>
-  <:item title="Logo url"><%= @syndicate.logo_url %></:item>
-  <:item title="Banner url"><%= @syndicate.banner_url %></:item>
-  <:item title="Twitter url"><%= @syndicate.twitter_url %></:item>
-  <:item title="Facebook url"><%= @syndicate.facebook_url %></:item>
-  <:item title="Instagram url"><%= @syndicate.instagram_url %></:item>
-  <:item title="Linkedin url"><%= @syndicate.linkedin_url %></:item>
-  <:item title="Youtube url"><%= @syndicate.youtube_url %></:item>
-  <:item title="Github url"><%= @syndicate.github_url %></:item>
-</.list>
+  <div class="mt-8">
+    <img
+      src={@syndicate.banner_url}
+      alt={@syndicate.title <> " banner"}
+      class="w-full h-48 object-cover rounded-lg mb-8"
+    />
+    <div class="flex gap-8">
+      <img
+        src={@syndicate.logo_url}
+        alt={@syndicate.title <> " logo"}
+        class="w-32 h-32 rounded-lg object-cover bg-transparent"
+      />
+      <div class="flex-1">
+        <p class="text-lg opacity-80 mb-4"><%= @syndicate.bio %></p>
+        <p class="text-sm opacity-70"><%= @syndicate.description %></p>
+      </div>
+    </div>
 
-<.back navigate={~p"/syndicates"}>Back to syndicates</.back>
+    <div class="mt-8">
+      <h3 class="text-lg font-semibold mb-4">Connect with <%= @syndicate.title %></h3>
+      <div class="flex gap-4">
+        <%= if @syndicate.website do %>
+          <.link naviate={@syndicate.website} target="_blank" class="btn btn-circle btn-ghost">
+            <.icon name="hero-globe-alt-solid" class="size-6" />
+          </.link>
+        <% end %>
+
+        <%= if @syndicate.twitter_url do %>
+          <.link naviate={@syndicate.twitter_url} target="_blank" class="btn btn-circle btn-ghost">
+            <.icon name="tabler-brand-twitter-filled" class="size-6" />
+          </.link>
+        <% end %>
+
+        <%= if @syndicate.facebook_url do %>
+          <.link
+            naviate={@syndicate.facebook_url}
+            target="_blank"
+            class="btn btn-circle btn-ghost"
+          >
+            <.icon name="tabler-brand-facebook-filled" class="size-6" />
+          </.link>
+        <% end %>
+
+        <%= if @syndicate.instagram_url do %>
+          <.link
+            naviate={@syndicate.instagram_url}
+            target="_blank"
+            class="btn btn-circle btn-ghost"
+          >
+            <.icon name="tabler-brand-instagram-filled" class="size-6" />
+          </.link>
+        <% end %>
+
+        <%= if @syndicate.linkedin_url do %>
+          <.link
+            naviate={@syndicate.linkedin_url}
+            target="_blank"
+            class="btn btn-circle btn-ghost"
+          >
+            <.icon name="tabler-brand-linkedin-filled" class="size-6" />
+          </.link>
+        <% end %>
+
+        <%= if @syndicate.youtube_url do %>
+          <.link naviate={@syndicate.youtube_url} target="_blank" class="btn btn-circle btn-ghost">
+            <.icon name="tabler-brand-youtube-filled" class="size-6" />
+          </.link>
+        <% end %>
+
+        <%= if @syndicate.github_url do %>
+          <.link naviate={@syndicate.github_url} target="_blank" class="btn btn-circle btn-ghost">
+            <.icon name="tabler-brand-github-filled" class="size-6" />
+          </.link>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
