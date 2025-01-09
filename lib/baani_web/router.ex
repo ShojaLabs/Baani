@@ -84,12 +84,18 @@ defmodule BaaniWeb.Router do
   end
 
   scope "/syndicates", BaaniWeb do
-    pipe_through :browser
+    pipe_through [:browser]
 
     get "/", SyndicateController, :index
     get "/new", SyndicateController, :new
     post "/", SyndicateController, :create
     get "/:id", SyndicateController, :show
+    post "/:id/join", SyndicateController, :join_syndicate
+  end
+
+  scope "/syndicates", BaaniWeb do
+    pipe_through [:browser, BaaniWeb.Plugs.CheckSyndicateAdmin]
+
     get "/:id/edit", SyndicateController, :edit
     put "/:id", SyndicateController, :update
     delete "/:id", SyndicateController, :delete

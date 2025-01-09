@@ -3,10 +3,12 @@ defmodule BaaniWeb.SyndicateController do
 
   alias Baani.Syndicates
   alias Baani.Syndicates.Syndicate
+  require Logger
 
   def index(conn, _params) do
-    syndicates = Syndicates.list_syndicates()
-    render(conn, :index, syndicates: syndicates)
+    id = conn.assigns.current_user.id
+    syndicates_list = Syndicates.list_syndicates(id)
+    render(conn, :index, data: syndicates_list)
   end
 
   def new(conn, _params) do
@@ -15,8 +17,12 @@ defmodule BaaniWeb.SyndicateController do
   end
 
   def create(conn, %{"syndicate" => syndicate_params}) do
+    id = conn.assigns.current_user.id
+
     case Syndicates.create_syndicate(syndicate_params) do
       {:ok, syndicate} ->
+        Syndicates.create_admin(%{user_id: id, syndicate_id: syndicate.id})
+
         conn
         |> put_flash(:info, "Syndicate created successfully.")
         |> redirect(to: ~p"/syndicates/#{syndicate}")
@@ -27,8 +33,9 @@ defmodule BaaniWeb.SyndicateController do
   end
 
   def show(conn, %{"id" => id}) do
-    syndicate = Syndicates.get_syndicate!(id)
-    render(conn, :show, syndicate: syndicate)
+    user_id = conn.assigns.current_user.id
+    syndicate_data = Syndicates.get_syndicate!(id, user_id)
+    render(conn, :show, data: syndicate_data)
   end
 
   def edit(conn, %{"id" => id}) do
@@ -58,5 +65,14 @@ defmodule BaaniWeb.SyndicateController do
     conn
     |> put_flash(:info, "Syndicate deleted successfully.")
     |> redirect(to: ~p"/syndicates")
+  end
+
+  def join_syndicate(conn, %{"id" => id}) do
+    user_id = conn.assigns.current_user.id
+    Syndicates.create_participant(%{user_id: user_id, syndicate_id: id})
+
+    conn
+    |> put_flash(:info, "Syndicate joined successfully.")
+    |> redirect(to: ~p"/syndicates/#{id}")
   end
 end

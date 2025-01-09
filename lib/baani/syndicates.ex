@@ -7,6 +7,8 @@ defmodule Baani.Syndicates do
   alias Baani.Repo
 
   alias Baani.Syndicates.Syndicate
+  alias Baani.Syndicates.Member
+  require Logger
 
   @doc """
   Returns the list of syndicates.
@@ -14,11 +16,21 @@ defmodule Baani.Syndicates do
   ## Examples
 
       iex> list_syndicates()
-      [%Syndicate{}, ...]
+      [%{syndicate: Syndicate, is_admin: boolean}, ...]
 
   """
-  def list_syndicates do
-    Repo.all(Syndicate)
+
+  def list_syndicates(user_id) do
+    query =
+      from s in Syndicate,
+        left_join: m in Member,
+        on: m.syndicate_id == s.id and m.user_id == ^user_id,
+        select: %{
+          syndicate: s,
+          is_admin: m.role == "admin"
+        }
+
+    Repo.all(query)
   end
 
   @doc """
@@ -36,6 +48,24 @@ defmodule Baani.Syndicates do
 
   """
   def get_syndicate!(id), do: Repo.get!(Syndicate, id)
+
+  def get_syndicate!(id, user_id) do
+    query =
+      from s in Syndicate,
+        left_join: m in Member,
+        on: m.syndicate_id == s.id and m.user_id == ^user_id,
+        where: s.id == ^id,
+        select: %{
+          syndicate: s,
+          is_admin: m.role == "admin",
+          is_member: not is_nil(m.role)
+        }
+
+    case Repo.one(query) do
+      nil -> raise Ecto.NoResultsError, queryable: Syndicate
+      result -> result
+    end
+  end
 
   @doc """
   Creates a syndicate.
@@ -113,8 +143,8 @@ defmodule Baani.Syndicates do
       [%Member{}, ...]
 
   """
-  def list_syndicates_members do
-    Repo.all(Member)
+  def list_syndicates_members(id) do
+    Repo.all(from m in Member, where: m.syndicate_id == ^id)
   end
 
   @doc """
@@ -134,14 +164,14 @@ defmodule Baani.Syndicates do
   def get_member!(id), do: Repo.get!(Member, id)
 
   @doc """
-  Creates a member.
+  Creates a member with user_id, syndicate_id and role.
 
   ## Examples
 
-      iex> create_member(%{field: value})
+      iex> create_member(%{user_id: 1, syndicate_id: 2, role: "admin"})
       {:ok, %Member{}}
 
-      iex> create_member(%{field: bad_value})
+      iex> create_member(%{user_id: nil, syndicate_id: nil, role: "participant"})
       {:error, %Ecto.Changeset{}}
 
   """
@@ -167,6 +197,58 @@ defmodule Baani.Syndicates do
     member
     |> Member.changeset(attrs)
     |> Repo.update()
+  end
+
+  def create_or_update_member(attrs) do
+    %{user_id: user_id, syndicate_id: syndicate_id, role: _role} = attrs
+
+    Logger.debug(
+      "Attempting to create or update member with user_id: #{user_id} and syndicate_id: #{syndicate_id}"
+    )
+
+    case Repo.get_by(Member, user_id: user_id, syndicate_id: syndicate_id) do
+      nil ->
+        Logger.debug("No existing member found. Creating a new member.")
+
+        case create_member(attrs) do
+          {:ok, member} ->
+            Logger.debug("Member created successfully: #{inspect(member)}")
+            {:ok, member}
+
+          {:error, changeset} ->
+            Logger.error("Failed to create member: #{inspect(changeset)}")
+            {:error, changeset}
+        end
+
+      member ->
+        Logger.debug("Existing member found. Updating member with ID: #{member.id}")
+
+        case update_member(member, attrs) do
+          {:ok, updated_member} ->
+            Logger.debug("Member updated successfully: #{inspect(updated_member)}")
+            {:ok, updated_member}
+
+          {:error, changeset} ->
+            Logger.error("Failed to update member: #{inspect(changeset)}")
+            {:error, changeset}
+        end
+    end
+  end
+
+  def create_auditor(attrs \\ %{}) do
+    create_or_update_member(Map.put(attrs, :role, "auditor"))
+  end
+
+  def create_participant(attrs \\ %{}) do
+    create_or_update_member(Map.put(attrs, :role, "participant"))
+  end
+
+  def create_leader(attrs \\ %{}) do
+    create_or_update_member(Map.put(attrs, :role, "leader"))
+  end
+
+  def create_admin(attrs \\ %{}) do
+    create_or_update_member(Map.put(attrs, :role, "admin"))
   end
 
   @doc """
