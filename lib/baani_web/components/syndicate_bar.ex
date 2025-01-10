@@ -19,41 +19,50 @@ defmodule BaaniWeb.SyndicateBar do
               </button>
             </div>
           </.link>
-          <button class="btn w-12 p-0">
-            <div class="w-8">
-              <img src="https://img.icons8.com/?size=100&id=gUClbC7qqETn&format=png&color=000000" />
-            </div>
-          </button>
-          <button class="btn w-12 p-0">
-            <div class="w-8">
-              <img src="https://img.icons8.com/?size=100&id=owyuBEKvnmkf&format=png&color=000000" />
-            </div>
-          </button>
-          <button class="btn w-12 p-0">
-            <div class="w-8">
-              <img src="https://img.icons8.com/?size=100&id=Cv2SxtS796Pa&format=png&color=000000" />
-            </div>
-          </button>
-          <button class="btn w-12 p-0">
-            <div class="w-8">
-              <img src="https://img.icons8.com/?size=100&id=x0LhC1zQa9CB&format=png&color=000000" />
-            </div>
-          </button>
-          <button class="btn w-12 p-0">
-            <div class="w-8">
-              <img src="https://img.icons8.com/?size=100&id=Yy5q2TjOAQ9D&format=png&color=000000" />
-            </div>
-          </button>
-          <button class="btn w-12 p-0">
-            <div class="w-8">
-              <img src="https://img.icons8.com/?size=100&id=pe3KKd2Y8ned&format=png&color=000000" />
-            </div>
-          </button>
-          <button class="btn w-12 p-0">
-            <div class="w-8">
-              <img src="https://img.icons8.com/?size=100&id=EDaShbnpcOD7&format=png&color=000000" />
-            </div>
-          </button>
+          <%= for syndicate <- @conn.assigns.subscribed_syndicates do %>
+            <button class="btn w-12 p-0">
+              <div class="w-full">
+                <img src={syndicate.logo_url} class="rounded-lg" />
+              </div>
+            </button>
+          <% end %>
+          <%= if @conn.assigns.subscribed_syndicates == [] do %>
+            <button class="btn w-12 p-0">
+              <div class="w-8">
+                <img src="https://img.icons8.com/?size=100&id=gUClbC7qqETn&format=png&color=000000" />
+              </div>
+            </button>
+            <button class="btn w-12 p-0">
+              <div class="w-8">
+                <img src="https://img.icons8.com/?size=100&id=owyuBEKvnmkf&format=png&color=000000" />
+              </div>
+            </button>
+            <button class="btn w-12 p-0">
+              <div class="w-8">
+                <img src="https://img.icons8.com/?size=100&id=Cv2SxtS796Pa&format=png&color=000000" />
+              </div>
+            </button>
+            <button class="btn w-12 p-0">
+              <div class="w-8">
+                <img src="https://img.icons8.com/?size=100&id=x0LhC1zQa9CB&format=png&color=000000" />
+              </div>
+            </button>
+            <button class="btn w-12 p-0">
+              <div class="w-8">
+                <img src="https://img.icons8.com/?size=100&id=Yy5q2TjOAQ9D&format=png&color=000000" />
+              </div>
+            </button>
+            <button class="btn w-12 p-0">
+              <div class="w-8">
+                <img src="https://img.icons8.com/?size=100&id=pe3KKd2Y8ned&format=png&color=000000" />
+              </div>
+            </button>
+            <button class="btn w-12 p-0">
+              <div class="w-8">
+                <img src="https://img.icons8.com/?size=100&id=EDaShbnpcOD7&format=png&color=000000" />
+              </div>
+            </button>
+          <% end %>
         </div>
 
         <.link navigate={~p"/syndicates"}>

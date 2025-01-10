@@ -2,6 +2,7 @@ defmodule BaaniWeb.Router do
   use BaaniWeb, :router
 
   import BaaniWeb.UserAuth
+  alias BaaniWeb.Plugs.GetSubscribedSyndicates
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -11,16 +12,11 @@ defmodule BaaniWeb.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug :fetch_current_user
+    plug GetSubscribedSyndicates
   end
 
   pipeline :api do
     plug :accepts, ["json"]
-  end
-
-  scope "/", BaaniWeb do
-    pipe_through :browser
-
-    get "/", PageController, :home
   end
 
   # Other scopes may use custom stacks.
@@ -81,6 +77,12 @@ defmodule BaaniWeb.Router do
     post "/users/confirm", UserConfirmationController, :create
     get "/users/confirm/:token", UserConfirmationController, :edit
     post "/users/confirm/:token", UserConfirmationController, :update
+  end
+
+  scope "/", BaaniWeb do
+    pipe_through :browser
+
+    get "/", PageController, :home
   end
 
   scope "/syndicates", BaaniWeb do

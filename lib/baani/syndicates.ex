@@ -67,6 +67,16 @@ defmodule Baani.Syndicates do
     end
   end
 
+  def get_subscribed_syndicates(user_id) do
+    query =
+      from s in Syndicate,
+        left_join: m in Member,
+        on: m.syndicate_id == s.id and m.user_id == ^user_id,
+        where: not is_nil(m.role)
+
+    Repo.all(query)
+  end
+
   @doc """
   Creates a syndicate.
 
