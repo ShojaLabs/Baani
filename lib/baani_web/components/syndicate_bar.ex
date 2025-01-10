@@ -11,8 +11,8 @@ defmodule BaaniWeb.SyndicateBar do
     <%= if @current_user do %>
       <div class="card pr-2 min-h-full rounded-lg flex flex-col space-between rounded-none border-r border-base-200 pr-2">
         <div class="flex flex-col gap-2 mb-2 flex-1">
-          <.link navigate={~p"/syndicates"}>
-            <div class="tooltip tooltip-right tooltip-primary" data-tip="Your Dashboard">
+          <.link navigate={~p"/"}>
+            <div class="tooltip tooltip-right tooltip-primary" data-tip="See What's Happening">
               <button class="btn btn-primary w-12 p-0">
                 <%!-- <.icon name="hero-queue-list" class="h-5 w-5" /> --%>
                 <.icon name="tabler-bulb" />
