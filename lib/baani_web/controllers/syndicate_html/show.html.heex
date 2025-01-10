@@ -1,0 +1,125 @@
+<div class="m-16">
+  <div class="flex justify-between items-center">
+    <div class="flex gap-2 place-items-center">
+      <h1 class="text-3xl font-semibold leading-8 tracking-wide">
+        <%= @data.syndicate.title %>
+      </h1>
+      <%= if @data.is_admin do %>
+        <.link href={~p"/syndicates/#{@data.syndicate.id}/edit"}>
+          <button class="btn btn-sm btn-square">
+            <.icon name="hero-pencil" class="size-4" />
+          </button>
+        </.link>
+      <% end %>
+    </div>
+    <.link navigate={~p"/syndicates"}>
+      <button class="btn btn-square btn-sm btn-ghost">
+        <.icon name="hero-x-mark" />
+      </button>
+    </.link>
+  </div>
+
+  <div class="mt-8">
+    <img
+      src={@data.syndicate.banner_url}
+      alt={@data.syndicate.title <> " banner"}
+      class="w-full h-48 object-cover rounded-lg mb-8"
+    />
+    <div class="flex gap-8">
+      <div class="">
+        <img
+          src={@data.syndicate.logo_url}
+          alt={@data.syndicate.title <> " logo"}
+          class="w-32 h-32 rounded-lg object-cover bg-transparent mb-4"
+        />
+        <%= unless @data.is_member do %>
+          <.link href={~p"/syndicates/#{@data.syndicate.id}/join"} method="post">
+            <button class="btn btn-primary btn-block text-lg">
+              Join <.icon name="tabler-user-plus" class="size-5" />
+            </button>
+          </.link>
+        <% end %>
+      </div>
+
+      <div class="flex-1">
+        <p class="text-lg opacity-80 mb-4"><%= @data.syndicate.bio %></p>
+        <p class="text-sm opacity-70"><%= @data.syndicate.description %></p>
+      </div>
+    </div>
+
+    <div class="mt-8">
+      <h3 class="text-lg font-semibold mb-4">Connect with <%= @data.syndicate.title %></h3>
+      <div class="flex gap-4">
+        <%= if @data.syndicate.website do %>
+          <.link
+            naviate={@data.syndicate.website}
+            target="_blank"
+            class="btn btn-circle btn-ghost"
+          >
+            <.icon name="hero-globe-alt-solid" class="size-6" />
+          </.link>
+        <% end %>
+
+        <%= if @data.syndicate.twitter_url do %>
+          <.link
+            naviate={@data.syndicate.twitter_url}
+            target="_blank"
+            class="btn btn-circle btn-ghost"
+          >
+            <.icon name="tabler-brand-twitter-filled" class="size-6" />
+          </.link>
+        <% end %>
+
+        <%= if @data.syndicate.facebook_url do %>
+          <.link
+            naviate={@data.syndicate.facebook_url}
+            target="_blank"
+            class="btn btn-circle btn-ghost"
+          >
+            <.icon name="tabler-brand-facebook-filled" class="size-6" />
+          </.link>
+        <% end %>
+
+        <%= if @data.syndicate.instagram_url do %>
+          <.link
+            naviate={@data.syndicate.instagram_url}
+            target="_blank"
+            class="btn btn-circle btn-ghost"
+          >
+            <.icon name="tabler-brand-instagram-filled" class="size-6" />
+          </.link>
+        <% end %>
+
+        <%= if @data.syndicate.linkedin_url do %>
+          <.link
+            naviate={@data.syndicate.linkedin_url}
+            target="_blank"
+            class="btn btn-circle btn-ghost"
+          >
+            <.icon name="tabler-brand-linkedin-filled" class="size-6" />
+          </.link>
+        <% end %>
+
+        <%= if @data.syndicate.youtube_url do %>
+          <.link
+            naviate={@data.syndicate.youtube_url}
+            target="_blank"
+            class="btn btn-circle btn-ghost"
+          >
+            <.icon name="tabler-brand-youtube-filled" class="size-6" />
+          </.link>
+        <% end %>
+
+        <%= if @data.syndicate.github_url do %>
+          <.link
+            naviate={@data.syndicate.github_url}
+            target="_blank"
+            class="btn btn-circle btn-ghost"
+          >
+            <.icon name="tabler-brand-github-filled" class="size-6" />
+          </.link>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

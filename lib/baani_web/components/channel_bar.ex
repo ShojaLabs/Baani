@@ -8,20 +8,9 @@ defmodule BaaniWeb.ChannelBar do
 
   def navbar(assigns) do
     ~H"""
-    <%= if @current_user do %>
-      <div class="card p-2 bg-base-200 w-20 min-h-full rounded-lg flex flex-col gap-2">
-        <button class="btn btn-lg btn-neutral">1</button>
-        <button class="btn btn-lg btn-neutral">2</button>
-        <button class="btn btn-lg btn-neutral">3</button>
-        <button class="btn btn-lg btn-neutral">4</button>
-        <button class="btn btn-lg btn-neutral">1</button>
-        <button class="btn btn-lg btn-neutral">2</button>
-        <button class="btn btn-lg btn-neutral">3</button>
-        <button class="btn btn-lg btn-neutral">4</button>
-        <button class="btn btn-lg btn-neutral">1</button>
-        <button class="btn btn-lg btn-neutral">2</button>
-        <button class="btn btn-lg btn-neutral">3</button>
-        <button class="btn btn-lg btn-neutral">4</button>
+    <%= if @current_user && !String.starts_with?(@conn.request_path, "/syndicates") do %>
+      <div class="card bg-base-100 w-60 min-h-full rounded-none border-r border-base-200 pr-2">
+        <button class="btn">Click me</button>
       </div>
     <% end %>
     """

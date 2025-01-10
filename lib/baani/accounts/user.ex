@@ -10,6 +10,8 @@ defmodule Baani.Accounts.User do
     field :confirmed_at, :utc_datetime
     field :is_oauth_user, :boolean, default: false
 
+    many_to_many :syndicates, Baani.Syndicates.Syndicate, join_through: "syndicates_members"
+
     timestamps(type: :utc_datetime)
   end
 

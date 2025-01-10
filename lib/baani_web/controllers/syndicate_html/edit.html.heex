@@ -1,0 +1,16 @@
+<div class="m-16">
+  <div class="flex justify-between items-center">
+    <div class="flex gap-2 place-items-center">
+      <h1 class="text-3xl font-semibold leading-8 tracking-wide">
+        <%= @syndicate.title %>
+      </h1>
+    </div>
+    <.link navigate={~p"/syndicates"}>
+      <button class="btn btn-square btn-sm btn-ghost">
+        <.icon name="hero-x-mark" />
+      </button>
+    </.link>
+  </div>
+
+  <.syndicate_form changeset={@changeset} action={~p"/syndicates/#{@syndicate.id}"} />
+</div>

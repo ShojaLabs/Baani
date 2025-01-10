@@ -1,0 +1,66 @@
+<div class="m-16">
+  <div class="flex justify-between items-center">
+    <h1 class="text-3xl font-semibold leading-8 tracking-wide">
+      Syndicates
+    </h1>
+    <.link href={~p"/syndicates/new"}>
+      <button class="btn btn-primary">
+        New <.icon name="tabler-apps" class="size-5" />
+      </button>
+    </.link>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
+    <%= for dt <- @data do %>
+      <div class="card bg-base-200 shadow-xl group">
+        <figure>
+          <img
+            src={dt.syndicate.banner_url}
+            alt={dt.syndicate.title}
+            class="h-40 w-full object-cover"
+          />
+        </figure>
+        <div class="card-body p-6">
+          <div class="flex justify-between items-center">
+            <.link class="group-hover:underline" navigate={~p"/syndicates/#{dt.syndicate.id}"}>
+              <h2 class="card-title tracking-wide text-base"><%= dt.syndicate.title %></h2>
+            </.link>
+            <div class="flex gap-2 invisible group-hover:visible transition-all">
+              <%= if dt.is_admin do %>
+                <.link navigate={~p"/syndicates/#{dt.syndicate.id}/edit"}>
+                  <button class="btn btn-sm size-8 p-0">
+                    <.icon name="hero-pencil" class="size-4" />
+                  </button>
+                </.link>
+              <% end %>
+              <.link href={dt.syndicate.website} target="_blank">
+                <button class="btn btn-neutral btn-sm p-0 size-8">
+                  <.icon name="hero-globe-alt" class="size-4" />
+                </button>
+              </.link>
+            </div>
+          </div>
+          <div class="tooltip text-left tooltip-bottom" data-tip={dt.syndicate.bio}>
+            <p class="text-sm opacity-70">
+              <%= if String.length(dt.syndicate.bio || "") > 255,
+                do: String.slice(dt.syndicate.bio, 0, 252) <> "...",
+                else: dt.syndicate.bio %>
+            </p>
+          </div>
+          <%!-- <p class="text-sm opacity-70"><%= syndicate.description %></p> --%>
+          <%!-- <div class="card-actions justify-end mt-4 invisible group-hover:visible transition-opacity">
+            <.link
+              href={~p"/syndicates/#{dt.syndicate.id}"}
+              method="delete"
+              data-confirm="Are you sure?"
+            >
+              <button class="btn btn-error btn-sm">
+                Delete <.icon name="tabler-trash" class="size-4" />
+              </button>
+            </.link>
+          </div> --%>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
